@@ -5,12 +5,11 @@ import java.util.ArrayList;
 
 public class InsertionSorter extends Sorter {
 
-
     /**
       Construct an instance to process the user's data
      */
     public InsertionSorter(  ArrayList< String> usersData) {
-
+        super(usersData);
     }
 
 
@@ -18,9 +17,8 @@ public class InsertionSorter extends Sorter {
       sort the user's data, implementing insertion sort
      */
     public void mySort() {
-
+        insertionSort(elements);
     }
-
 
     private void insert1( ArrayList<String> list, int alreadyInserted){
         String valueToInsert , valueToCompare;
@@ -28,22 +26,21 @@ public class InsertionSorter extends Sorter {
             for(indexToCompare = alreadyInserted - 1,
                   valueToInsert = list.get(alreadyInserted),
                   valueToCompare = list.get(indexToCompare);
-                indexToCompare > 0 && valueToInsert.compareTo(valueToCompare) > 0;
+                indexToCompare > 0 && valueToInsert.compareTo(valueToCompare) < 0;
                 list.set(indexToCompare + 1 , valueToCompare),
                   list.set(indexToCompare , valueToInsert) ,
                   valueToCompare = list.get(--indexToCompare));
+
+           valueToCompare = list.get(0);
            if(valueToInsert.compareTo(valueToCompare) < 0){
               list.set(1 , valueToCompare);
               list.set(0 , valueToInsert);
            }
     }
 
-    public void insertionSort( ArrayList<String> list) {
+    private void insertionSort( ArrayList<String> list) {
         for( int index = 1; index < list.size(); index++){
             insert1( list, index);
-            System.out.println( "after inserting element " + index
-				+ " elements: " + list
-				);
         }
     }
 }
